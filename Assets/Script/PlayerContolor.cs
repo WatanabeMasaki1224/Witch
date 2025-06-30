@@ -17,6 +17,11 @@ public class PlayerContolor : MonoBehaviour
     [Header("魔法発射位置")]
     public Transform magicSpawnPoint;
 
+    [Header("魔法使用設定")]
+    public float magicCooldown = 0.5f; // 魔法硬直時間
+
+    private bool isCasting = false;   // 魔法使用中フラグ
+
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
@@ -34,8 +39,11 @@ public class PlayerContolor : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleJump();
+        if (!isCasting)
+        {
+            HandleMovement();
+            HandleJump();
+        }
         HandleMagicSwitch();
         HandleMagicCast();
     }
@@ -76,7 +84,7 @@ public class PlayerContolor : MonoBehaviour
 
     void HandleMagicCast()
     {
-        if (Input.GetMouseButtonDown(0)) // 左クリック
+        if (Input.GetMouseButtonDown(0) && !isCasting) // 左クリック
         {
             GameObject prefabToSpawn = null;
             switch (currentMagic)
@@ -94,6 +102,7 @@ public class PlayerContolor : MonoBehaviour
             if (prefabToSpawn != null && magicSpawnPoint != null)
             {
                 Instantiate(prefabToSpawn, magicSpawnPoint.position, magicSpawnPoint.rotation);
+                StartCoroutine(CastCooldown()); // 魔法硬直を開始
             }
         }
     }
@@ -111,6 +120,13 @@ public class PlayerContolor : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         isGrounded = false;
+    }
+
+    private IEnumerator CastCooldown()
+    {
+        isCasting = true; // 硬直開始
+        yield return new WaitForSeconds(magicCooldown);
+        isCasting = false; // 硬直解除
     }
 }
 
