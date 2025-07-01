@@ -103,6 +103,8 @@ public class PlayerContolor : MonoBehaviour
             {
                 Instantiate(prefabToSpawn, magicSpawnPoint.position, magicSpawnPoint.rotation);
                 StartCoroutine(CastCooldown()); // 魔法硬直を開始
+                rb.velocity = Vector2.zero; //魔法発動後動かないよう
+
             }
         }
     }
@@ -122,7 +124,7 @@ public class PlayerContolor : MonoBehaviour
         isGrounded = false;
     }
 
-    private IEnumerator CastCooldown()
+    private IEnumerator CastCooldown() //魔法使用後の硬直
     {
         isCasting = true; // 硬直開始
         yield return new WaitForSeconds(magicCooldown);

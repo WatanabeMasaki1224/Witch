@@ -284,6 +284,7 @@ MonoBehaviour:
   waterPrefab: {fileID: 0}
   grassPrefab: {fileID: 0}
   magicSpawnPoint: {fileID: 1718091749}
+  magicCooldown: 1
 --- !u!61 &1838548423
 BoxCollider2D:
   m_ObjectHideFlags: 0
