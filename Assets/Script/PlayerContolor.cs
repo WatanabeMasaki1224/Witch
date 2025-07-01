@@ -28,6 +28,9 @@ public class PlayerContolor : MonoBehaviour
     private int jumpCount = 0;
     private bool isGrounded = false;
 
+    public int maxHealth = 10;
+    private int currentHealth;
+
     public enum MagicType { Fire, Water, Grass }
     private MagicType currentMagic = MagicType.Fire;
 
@@ -35,6 +38,7 @@ public class PlayerContolor : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -129,6 +133,22 @@ public class PlayerContolor : MonoBehaviour
         isCasting = true; // 硬直開始
         yield return new WaitForSeconds(magicCooldown);
         isCasting = false; // 硬直解除
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("HP残り: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("プレイヤー死亡");
+        // ゲームオーバーなど
     }
 }
 

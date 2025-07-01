@@ -21,7 +21,7 @@ public class WaterMagic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * speed * direction * lifeTime );
+        transform.Translate(Vector2.right * speed * direction * Time.deltaTime);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
