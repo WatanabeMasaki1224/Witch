@@ -239,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 1718091748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.52, y: -0.18, z: 0}
+  m_LocalPosition: {x: 0.72, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -281,10 +281,11 @@ MonoBehaviour:
   jumpForce: 7
   maxJumpCount: 1
   firePrefab: {fileID: 4144892094047213195, guid: 165d0b9908eb31a4384aefe3e8fae583, type: 3}
-  waterPrefab: {fileID: 0}
+  waterPrefab: {fileID: 3213576020211129598, guid: 7d97eb6c2f589d34fbdcb310e688527b, type: 3}
   grassPrefab: {fileID: 0}
   magicSpawnPoint: {fileID: 1718091749}
   magicCooldown: 1
+  maxHealth: 10
 --- !u!61 &1838548423
 BoxCollider2D:
   m_ObjectHideFlags: 0

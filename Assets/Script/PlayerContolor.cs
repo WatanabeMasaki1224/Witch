@@ -34,11 +34,14 @@ public class PlayerContolor : MonoBehaviour
     public enum MagicType { Fire, Water, Grass }
     private MagicType currentMagic = MagicType.Fire;
 
+    private float originalJumpForce;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
+        originalJumpForce = jumpForce;
     }
 
     void Update()
@@ -150,6 +153,16 @@ public class PlayerContolor : MonoBehaviour
         Debug.Log("プレイヤー死亡");
         // ゲームオーバーなど
     }
+    public void BoostJump(float boostedForce)
+    {
+        jumpForce = boostedForce;
+    }
+
+    public void ResetJump()
+    {
+        jumpForce = originalJumpForce;
+    }
+
 }
 
 
