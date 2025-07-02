@@ -10,9 +10,9 @@ public class Grass : MonoBehaviour
     public int damage = 1;
     public float jumpBoost = 5f;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        EnemyController enemy = GetComponent<EnemyController>();
+        EnemyController enemy = other.GetComponent<EnemyController>();
         if(enemy != null )
         {
             enemy.Stun(stunDuration);
