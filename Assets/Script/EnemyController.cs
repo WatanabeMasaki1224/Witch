@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float moveSpeed = 2f;
     public float stunDuration = 2f;
     private bool isStunned = false;
     private float stunTimer = 0f;
     public int damagetoPlayer = 1;
-   
+    private BaseEnemyMovement movement;
+
+    public int maxHealth = 5;
+    private int currentHealth;
     void Start()
     {
-        
+        movement = GetComponent<BaseEnemyMovement>();  
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -24,20 +27,26 @@ public class EnemyController : MonoBehaviour
             stunTimer -= Time.deltaTime;
             if (stunTimer <= 0f)
             {
-                isStunned=false;
+                isStunned = false;
             }
             return;
         }
-        move();
+        if (movement != null)
+        {
+
+            movement.Move();
+        }
     }
-    
-    void move()
-    {
-        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-    }
+
+       
     public void TakeDamage(int amount)
     {
+        currentHealth -= amount;
         Debug.Log("敵が " + amount + " ダメージを受けた！");
+        if(currentHealth < 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void Stun(float customDuration)
     {
