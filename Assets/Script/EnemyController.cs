@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     public float stunDuration = 2f;
     private bool isStunned = false;
     private float stunTimer = 0f;
+    public int damagetoPlayer = 1;
+   
     void Start()
     {
         
@@ -19,7 +21,7 @@ public class EnemyController : MonoBehaviour
         //ƒXƒ^ƒ“’†‚È‚ç“®‚©‚È‚¢
         if (isStunned)
         {
-            stunTimer = Time.deltaTime;
+            stunTimer -= Time.deltaTime;
             if (stunTimer <= 0f)
             {
                 isStunned=false;
@@ -41,6 +43,15 @@ public class EnemyController : MonoBehaviour
     {
        isStunned = true;
         stunTimer = customDuration;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        PlayerContolor player = collision.GetComponent<PlayerContolor>();
+        if(player != null )
+        {
+            player.TakeDamage(damagetoPlayer);
+        }
     }
 
 }
