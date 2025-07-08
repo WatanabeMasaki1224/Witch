@@ -21,10 +21,10 @@ public class PoisonArea : MonoBehaviour
         if(isCleansed) return;
         if (damageTimer <= 0f)
         {
-            var damageable = other.GetComponent<IDamageable>();
-            if(damageable != null)
+            PlayerContolor player = other.GetComponent<PlayerContolor>();
+            if(player != null)
             {
-                damageable.TakeDamage(damagePerSecond);
+                player.TakeDamage(damagePerSecond);
                 damageTimer = damageInterval; // タイマーリセット
             }
         }

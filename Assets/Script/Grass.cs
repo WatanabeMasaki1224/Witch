@@ -17,6 +17,8 @@ public class Grass : MonoBehaviour
         {
             enemy.Stun(stunDuration);
             enemy.TakeDamage(damage);
+            StartCoroutine(DestroyAfterStun(stunDuration));
+            return;
 
         }
         PlayerContolor player = other.GetComponent<PlayerContolor>();
@@ -33,6 +35,12 @@ public class Grass : MonoBehaviour
         {
             player.ResetJump();
         }
+    }
+
+    private IEnumerator DestroyAfterStun(float  delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
 }

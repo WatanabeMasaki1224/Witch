@@ -16,7 +16,7 @@ public class GrassMagic : MonoBehaviour
     void Start()
     {
         Vector2 tagetPos = transform.position + new Vector3(direction *  spawnDistance, 0.5f, 0);
-        RaycastHit2D hit = Physics2D.Raycast(tagetPos, Vector2.down,1f,groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(tagetPos, Vector2.down,5f,groundLayer);
         if(hit.collider != null)
         {
             Instantiate(grassPrefab, hit.point, Quaternion.identity);

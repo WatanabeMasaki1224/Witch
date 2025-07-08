@@ -35,6 +35,7 @@ public class PlayerContolor : MonoBehaviour
     private MagicType currentMagic = MagicType.Fire;
 
     private float originalJumpForce;
+    private Animator animator;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class PlayerContolor : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
         originalJumpForce = jumpForce;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -63,6 +65,7 @@ public class PlayerContolor : MonoBehaviour
         // 進行方向に向ける
         if (moveInput > 0) spriteRenderer.flipX = false;
         else if (moveInput < 0) spriteRenderer.flipX = true;
+        animator.SetBool("isRun",moveInput !=0);
     }
 
     void HandleJump()
@@ -71,12 +74,14 @@ public class PlayerContolor : MonoBehaviour
         if (isGrounded && rb.velocity.y <= 0)
         {
             jumpCount = 0;
+            animator.SetBool("isJump",false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumpCount)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount++;
+            animator.SetBool("isJump",true);
         }
     }
 
@@ -113,6 +118,7 @@ public class PlayerContolor : MonoBehaviour
                 rb.velocity = Vector2.zero; //魔法発動後動かないよう
 
             }
+            animator.SetTrigger("attack");
         }
     }
 
@@ -141,6 +147,7 @@ public class PlayerContolor : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log("HP残り: " + currentHealth);
+        animator.SetTrigger("hurt");
 
         if (currentHealth <= 0)
         {
@@ -151,8 +158,12 @@ public class PlayerContolor : MonoBehaviour
     void Die()
     {
         Debug.Log("プレイヤー死亡");
-        // ゲームオーバーなど
+        animator.SetTrigger("die");
     }
+
+   
+
+
     public void BoostJump(float boostedForce)
     {
         jumpForce = boostedForce;

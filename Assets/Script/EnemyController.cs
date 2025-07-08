@@ -42,6 +42,8 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        Stun(stunDuration);
+
         Debug.Log("敵が " + amount + " ダメージを受けた！");
         if(currentHealth < 0)
         {

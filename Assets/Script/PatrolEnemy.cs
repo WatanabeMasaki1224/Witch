@@ -13,6 +13,9 @@ public class PatrolEnemy : BaseEnemyMovement
     {
         float moveDir = movingRight ? 1f : -1f;
         transform.Translate(Vector2.right * moveSpeed * moveDir * Time.deltaTime);
+        Vector3 newScale = transform.localScale;
+        newScale.x = Mathf.Abs(newScale.x) * (movingRight ? 1f : -1f);
+        transform.localScale = newScale;
 
         if (transform.position.x >= rightLimit && movingRight)
         {

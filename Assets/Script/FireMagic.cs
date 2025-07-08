@@ -28,10 +28,10 @@ public class FireMagic : MonoBehaviour
             torch.Ignite();
         }
         // ˆï‚ğ”R‚â‚·I
-        IbaraController ibara = collision.GetComponent<IbaraController>();
-        if (ibara != null)
+        Vine vine = collision.GetComponent<Vine>();
+        if (vine != null)
         {
-            ibara.Burn(); // © ‚±‚±‚Åˆï‚ª”R‚¦‚é
+            vine.Burn(); // © ‚±‚±‚Åˆï‚ª”R‚¦‚é
         }
     }
       
