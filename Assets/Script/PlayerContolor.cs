@@ -119,7 +119,9 @@ public class PlayerContolor : MonoBehaviour
             }
             if (prefabToSpawn != null && magicSpawnPoint != null)
             {
-                Instantiate(prefabToSpawn, magicSpawnPoint.position, magicSpawnPoint.rotation);
+                GameObject magic =  Instantiate(prefabToSpawn, magicSpawnPoint.position, magicSpawnPoint.rotation);
+                int dir = transform.localScale.x > 0 ? 1 : -1;
+                magic.GetComponent<WaterMagic>()?.SetDirection(dir);
                 StartCoroutine(CastCooldown()); // 魔法硬直を開始
                 rb.velocity = Vector2.zero; //魔法発動後動かないよう
 

@@ -8,10 +8,16 @@ public class WaterMagic : MonoBehaviour
     public float lifeTime = 1.0f; //水が消える時間
     public int damege = 2;
     private int direction = 1;        // 飛ぶ方向（1は右、-1は左）
+    private SpriteRenderer spriteRenderer;
 
     public void SetDirection(int dir)
     {
         direction = dir;
+        if(spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();      
+        }
+        spriteRenderer.flipX = (direction == -1);
     }
     void Start()
     {

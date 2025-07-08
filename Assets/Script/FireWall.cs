@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class FireWall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int damageAmount = 1;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
+            PlayerContolor player = other.GetComponent<PlayerContolor>();
+            if (player != null)
+            {
+                player.TakeDamage(damageAmount);
+            }
         
     }
 }
+
