@@ -63,8 +63,14 @@ public class PlayerContolor : MonoBehaviour
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
         // is•ûŒü‚ÉŒü‚¯‚é
-        if (moveInput > 0) spriteRenderer.flipX = false;
-        else if (moveInput < 0) spriteRenderer.flipX = true;
+        if (moveInput > 0)
+        {
+            transform.localScale = new Vector3(0.5f, 0.5f, 1);
+        }  
+        else if (moveInput < 0)
+        {
+            transform.localScale = new Vector3(-0.5f, 0.5f, 1);
+        }
         animator.SetBool("isRun",moveInput !=0);
     }
 

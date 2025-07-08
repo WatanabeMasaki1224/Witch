@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 928071776}
   - component: {fileID: 928071775}
   - component: {fileID: 928071774}
+  - component: {fileID: 928071777}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -214,6 +215,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928071777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928071773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90a8f51505d2e64197ac915ea544391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1746629952}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1608217778
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +306,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 0.2}
   m_EdgeRadius: 0
+--- !u!4 &1746629952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5062871186335003919, guid: c5692ec771b84cc4e9cce6a0fe3639ac, type: 3}
+  m_PrefabInstance: {fileID: 2234744126604420182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2008184423
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +675,10 @@ PrefabInstance:
     - target: {fileID: 5062871186335003919, guid: c5692ec771b84cc4e9cce6a0fe3639ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102332321024113559, guid: c5692ec771b84cc4e9cce6a0fe3639ac, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
